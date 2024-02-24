@@ -25,6 +25,8 @@ var movies []Movie
 
 func main() {
 	r := mux.NewRouter()
+
+	movies = append()
 	r.HandleFunc("/movies", getMovies).Methods("GET")
 	r.HandleFunc("/movies/{id}", getMovie).Methods("GET")
 	r.HandleFunc("/movies", createMovie).Methods("POST")
