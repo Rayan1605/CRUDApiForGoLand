@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/gorilla/mux"
 	"log"
@@ -25,6 +26,23 @@ var movies []Movie
 
 func getMovies(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content Type", "application/json")
+	err := json.NewEncoder(w).Encode(movies)
+	if err != nil {
+		return
+	}
+}
+
+func deleteMovie(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	params := mux.Vars(r)
+	for index, item := range movies {
+		if item.ID == params["id"] {
+			movies = append(movies[:index], movies[index+1:]...)
+			break
+
+		}
+	}
+
 }
 
 func main() {
