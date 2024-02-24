@@ -27,9 +27,15 @@ type Director struct {
 var movies []Movie
 
 //	http.ResponseWriter ->
-//
 // sending HTTP responses to a client. It allows you to write your response data and headers.
+//r *http.Request in Go, think of it like this:
+//You have a note (r) that is actually a map (*http.Request)
+//to find a very special toy box (http.Request).
+//This toy box has all sorts of things you can ask for when you're playing on the internet, like asking for a new webpage to look at or sending a letter to a website.
+
 func getMovies(w http.ResponseWriter, r *http.Request) {
+	//Content-Type header of the response to "application/json".
+	//This tells the client that the server is returning JSON-formatted data.
 	w.Header().Set("Content Type", "application/json")
 	err := json.NewEncoder(w).Encode(movies)
 	if err != nil {
