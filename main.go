@@ -26,6 +26,9 @@ type Director struct {
 
 var movies []Movie
 
+//	http.ResponseWriter ->
+//
+// sending HTTP responses to a client. It allows you to write your response data and headers.
 func getMovies(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content Type", "application/json")
 	err := json.NewEncoder(w).Encode(movies)
