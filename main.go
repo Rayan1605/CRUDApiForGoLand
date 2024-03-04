@@ -77,6 +77,8 @@ func getMovie(w http.ResponseWriter, r *http.Request) {
 	// Because remember in GO it give an error when not using a variable
 	for _, item := range movies {
 		if item.ID == params["id"] {
+			// If the movie is found (its ID matches), this line sends back the
+			//information about the movie in JSON format.
 			json.NewEncoder(w).Encode(item)
 			return
 		}
