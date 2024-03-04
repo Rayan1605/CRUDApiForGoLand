@@ -37,6 +37,13 @@ func getMovies(w http.ResponseWriter, r *http.Request) {
 	//Content-Type header of the response to "application/json".
 	//This tells the client that the server is returning JSON-formatted data.
 	w.Header().Set("Content Type", "application/json")
+	//that will write output to w, the http.ResponseWriter.
+	//This encoder can convert Go data structures into JSON format
+
+	//Takes a Go data structure (movies in this case, which is likely a slice or array of
+	//movie-related structs) and encodes it as JSON.
+	//This encoded JSON data is then written directly to the http.ResponseWriter,
+	//effectively sending it as the HTTP response body.
 	err := json.NewEncoder(w).Encode(movies)
 	if err != nil {
 		return
@@ -55,6 +62,9 @@ func deleteMovie(w http.ResponseWriter, r *http.Request) {
 	}
 
 }
+
+// so remember the w here is the tool to send things back to the user
+// r here is the actual information received by the request
 
 func getMovie(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
