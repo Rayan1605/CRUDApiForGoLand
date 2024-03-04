@@ -67,8 +67,14 @@ func deleteMovie(w http.ResponseWriter, r *http.Request) {
 // r here is the actual information received by the request
 
 func getMovie(w http.ResponseWriter, r *http.Request) {
+	// The response will be in json
 	w.Header().Set("Content-Type", "application/json")
+	// mux is a package often used in Go for dealing with HTTP requests
+	// Vars is a function from the mux package. Its job is to extract variables from the HTTP request.
 	params := mux.Vars(r)
+	// _ mean it does not need this value and we're going to use the item which is the value of
+	//the current element and not the index
+	// Because remember in GO it give an error when not using a variable
 	for _, item := range movies {
 		if item.ID == params["id"] {
 			json.NewEncoder(w).Encode(item)
